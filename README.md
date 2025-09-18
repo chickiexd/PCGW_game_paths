@@ -44,22 +44,24 @@ python main.py
 ```mermaid
 erDiagram
     games {
-        INTEGER id PK
-        TEXT name UNIQUE
+        INTEGER id PK "Primary Key"
+        TEXT name "Unique"
     }
     directory_paths {
-        INTEGER id PK
-        TEXT path UNIQUE
+        INTEGER id PK "Primary Key"
+        TEXT path "Unique"
     }
     game_paths {
-        INTEGER game_id FK
-        INTEGER path_id FK
+        INTEGER game_id FK "References games.id"
+        INTEGER path_id FK "References directory_paths.id"
         TEXT type
         TEXT os
     }
-    games ||--o{ game_paths : has
-    directory_paths ||--o{ game_paths : has
+
+    games ||--o{ game_paths : "has"
+    directory_paths ||--o{ game_paths : "has"
 ```
+
 
 ## License
 
