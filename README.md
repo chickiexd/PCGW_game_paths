@@ -41,26 +41,28 @@ python main.py
 
 ## Database Schema
 
-```mermaid
-erDiagram
-    games {
-        INTEGER id PK "Primary Key"
-        TEXT name "Unique"
-    }
-    directory_paths {
-        INTEGER id PK "Primary Key"
-        TEXT path "Unique"
-    }
-    game_paths {
-        INTEGER game_id FK "References games.id"
-        INTEGER path_id FK "References directory_paths.id"
-        TEXT type
-        TEXT os
-    }
+**Games**
 
-    games ||--o{ game_paths : "has"
-    directory_paths ||--o{ game_paths : "has"
-```
+| Column | Type    | Notes  |
+| ------ | ------- | ------ |
+| id     | INTEGER | PK     |
+| name   | TEXT    | Unique |
+
+**Directory Paths**
+
+| Column | Type    | Notes  |
+| ------ | ------- | ------ |
+| id     | INTEGER | PK     |
+| path   | TEXT    | Unique |
+
+**Game Paths**
+
+| Column   | Type    | Notes                    |
+| -------- | ------- | ------------------------ |
+| game\_id | INTEGER | FK → games.id            |
+| path\_id | INTEGER | FK → directory\_paths.id |
+| type     | TEXT    | e.g., 'config' or 'save' |
+| os       | TEXT    | Windows/Linux/etc        |
 
 
 ## License
