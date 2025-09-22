@@ -8,8 +8,9 @@ from tqdm import tqdm
 class GameData:
     def __init__(self, url=None, db_path=None):
         self.url = "https://www.pcgamingwiki.com/w/api.php"
-        self.db_path = "pcgw_games.db"
+        self.db_path = db_path if db_path else "./pcgw_games.db"
         self.games_list = self.get_current_games()
+        self.init_db()
 
     def init_db(self):
         conn = sqlite3.connect(self.db_path)

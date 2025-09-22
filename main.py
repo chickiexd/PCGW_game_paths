@@ -1,5 +1,7 @@
 import requests
 import re
+import argparse
+
 from games import GameData
 
 
@@ -65,6 +67,10 @@ def get_game_data(game):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Bachlor Thesis by Gerrit Klause")
+    parser.add_argument("--db_path", help="Path to SQliteDB", type=str)
+    args = parser.parse_args()
+
     # game = "Counter-Strike"
     # result = get_game_data(game)
     # print(result)
@@ -74,7 +80,7 @@ def main():
     # update_games_list()
     # update_db_with_new_game_data()
     # get
-    game_data = GameData()
+    game_data = GameData(db_path=args.db_path)
     game_data.fetch_new_games()
     # game_data.get_current_games()
     # game_data.init_db()
